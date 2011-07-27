@@ -1,14 +1,7 @@
-#development:
-#  user_name: 'devcenterdemos@docusign.com'
-#  password: 'd0cus1gnd3m0s'
-#  integrators_key: 'DOCU-9f2c6847-0c3f-44f9-a8a7-ecce9c3cac2f'
-#  account_id: '70865594-7e18-47f3-8136-138779e4db3e'
-#  default_endpoint_url: 'https://demo.docusign.net/api/3.0/api.asmx'
-#  credential_endpoint_url: 'https://demo.docusign.net/api/3.0/Credential.asmx'
 development:
-  user_name: 'devcenterdemos@docusign.com'
-  password: 'd0cus1gnd3m0s'
-  integrators_key: 'DOCU-9f2c6847-0c3f-44f9-a8a7-ecce9c3cac2f'
-  account_id: '70865594-7e18-47f3-8136-138779e4db3e'
+  user_name: ''
+  password: ''
+  integrators_key: ''
+  account_id: ''
   default_endpoint_url: 'https://demo.docusign.net/api/3.0/api.asmx'
   credential_endpoint_url: 'https://demo.docusign.net/api/3.0/Credential.asmx'
