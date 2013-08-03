@@ -501,8 +501,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
     	<div class="container">
     		<div class="authbox">
-    			<span><?php echo $_SESSION["UserID"]; ?></span> 
-    			(<a href="index.php?logout">logout</a>)
+			
+				<?php include 'include/header.html';?>
+    			
     		</div>
         <table class="tabs" cellspacing="0" cellpadding="0">
 	        <tr>

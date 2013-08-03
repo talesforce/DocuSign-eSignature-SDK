@@ -302,8 +302,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
   	<div class="container">
   		<div class="authbox">
-  			<span><?php echo $_SESSION["UserID"]; ?></span> 
-  			(<a href="index.php?logout">logout</a>)
+  			<?php include 'include/header.html';?>
   		</div>
 	    <table class="tabs" cellspacing="0" cellpadding="0">
 		    <tr>
@@ -323,16 +322,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    		<div style="margin:0pt auto;width:400px;text-align:center;">
 				    <br />
 				    <div>
+					<?php if(!empty($templates)){ ?>
 				        Select a Template
 				        <br />
 				        <select id="TemplateTable" name="TemplateTable" >
 				        	<?php loadTemplates(); ?>
 				        </select>
+						
+						<?php } ?>
+						<strong style="color:red;">No template found</strong>
 				    </div>
 				    <br />
-				    <div class="submitForm">
+				   
+					<?php $templates = loadTemplates();
+					//echo "<pre>";
+					//print_r($templates ); die;
+					
+					if(!empty($templates)){
+					?>
+					 <div class="submitForm">
 				    	<input class="docusignbutton orange" type="submit" value="Continue with Template"/>
 				    </div>
+					<?php } ?>
 				  </div>
 			    
 	    	<? } else { ?>
