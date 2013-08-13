@@ -143,7 +143,7 @@ function createFinalRoleAssignments($recipients) {
     return $roleAssignments;
 }
 
-function loadTemplates() {
+function loadTemplates($showText = true) {
     $dsapi = getAPI();
     
     $rtParams = new RequestTemplates();
@@ -159,12 +159,16 @@ function loadTemplates() {
         
         //echo "<option value='0'>No Templates Available</option>";
     }
-    
-    foreach ($templates as $template) {
-      echo '<option value="' . $template->TemplateID . '">' .
-          $template->Name . ' - ' . $template->TemplateID . "</option>\n";
-			// echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
-    }
+	if($showText){
+		foreach ($templates as $template) {
+		  echo '<option value="' . $template->TemplateID . '">' .
+			  $template->Name . ' - ' . $template->TemplateID . "</option>\n";
+				// echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
+		}
+	}
+	if(count($templates) == 0) {
+		return 'no record';
+	}
 }
 
 function sendNow($templateReferences, $envelopeInfo, $recipients) {
@@ -317,29 +321,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    	<!-- Choose the Template before showing other form fields (autopopulate Roles) -->
 	    	<?
 	    		if(!$displayForms){
+				
+				$templates = loadTemplates(false);
 	    	?>
 	    		
 	    		<div style="margin:0pt auto;width:400px;text-align:center;">
 				    <br />
 				    <div>
-					<?php if(!empty($templates)){ ?>
-				        Select a Template
-				        <br />
-				        <select id="TemplateTable" name="TemplateTable" >
-				        	<?php loadTemplates(); ?>
-				        </select>
-						
-						<?php } ?>
-						<strong style="color:red;">No template found</strong>
+					<?php if($templates == 'no record'){ ?>
+							<strong style="color:red;">No template found</strong>
+					<?php } else { ?>
+							Select a Template<br />
+							<select id="TemplateTable" name="TemplateTable" >
+								<?php loadTemplates(); ?>
+							</select>
+					<?php } ?>
 				    </div>
 				    <br />
 				   
-					<?php $templates = loadTemplates();
-					//echo "<pre>";
-					//print_r($templates ); die;
-					
-					if(!empty($templates)){
-					?>
+					<?php 
+					if($templates == 'no record'){} else{ ?>
 					 <div class="submitForm">
 				    	<input class="docusignbutton orange" type="submit" value="Continue with Template"/>
 				    </div>
